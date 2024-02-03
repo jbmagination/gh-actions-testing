@@ -20,13 +20,11 @@ jobs:
           xcode-version: 15.2.0
       - name: Clone Chromium repository
         run: |
+          export BASEDIR=$PWD
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-          ls -la /
-          ls -la
           mkdir chromium && cd chromium
-          echo $PWD
-          export PATH=$PATH:/Users/runner/depot_tools
-          ../depot_tools/fetch ios
+          export PATH=$PATH:$BASEDIR/depot_tools
+          fetch ios
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
