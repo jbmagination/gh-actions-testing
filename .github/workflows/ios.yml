@@ -22,7 +22,6 @@ jobs:
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
           ls -la /
-          ls -la /workspaces/
           ls -la
           mkdir chromium && cd chromium
           ../depot_tools/fetch ios
