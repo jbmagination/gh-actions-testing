@@ -20,6 +20,11 @@ jobs:
           xcode-version: 15.2.0
       - name: Clone Locus repository
         run: |
+          wget https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.16.9-stable.zip
+          unzip flutter_macos_3.16.9-stable.zip $HOME/development/
+          xcodebuild -downloadPlatform iOS
+          sudo xcodebuild -license
+          export PATH=$HOME/development/flutter/bin:$PATH
           git clone https://github.com/Myzel394/locus.git
           cd locus
           flutter build ipa --no-codesign
