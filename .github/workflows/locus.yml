@@ -25,6 +25,7 @@ jobs:
           channel: 'stable'
       - name: Clone Locus repository
         run: |
+          export BASEDIR=$PWD
           git clone https://github.com/Myzel394/locus.git
       - name: Build Locus
         run: |
@@ -33,5 +34,4 @@ jobs:
       - name: Upload .xcarchive
         with:
           name: Runner.xcarchive
-          path: locus/build/ios/archive/Runner.xcarchive
-      
+          path: $BASEDIR/locus/build/ios/archive/Runner.xcarchive
