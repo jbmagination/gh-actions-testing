@@ -29,9 +29,23 @@ jobs:
       - name: Build Locus
         run: |
           sudo xcodebuild -license accept && xcodebuild -downloadPlatform iOS
-          cd locus && flutter config --no-analytics && flutter --disable-telemetry && flutter build ipa --no-codesign
-      - name: Upload .xcarchive
+          cd locus && flutter config --no-analytics && flutter --disable-telemetry && flutter build ipa --no-codesign && cd ..
+      - name: Upload build folder
         uses: actions/upload-artifact@v4
         with:
-          name: Runner.xcarchive
-          path: locus/build/ios/archive/Runner.xcarchive
+          name: build
+          path: locus/build/ios
+      - name: Create .ipa
+        run: |
+          cd locus && cd build && cd ios && cd archive && cd Runner.xcarchive && cd Products
+          mv ./Applications ./Payload
+          cd ..
+          zip -vr Locus.zip Products -x "*.DS_Store"
+          mv ./Locus.zip ../../../../Locus.ipa
+          cd .. && cd .. & cd .. & cd ..
+          echo $PWD
+      - name: Upload Locus.ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: Locus
+          path: Locus.ipa
