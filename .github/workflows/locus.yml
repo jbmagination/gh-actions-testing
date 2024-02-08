@@ -41,7 +41,7 @@ jobs:
           mv ./Applications ./Payload
           zip -vr Locus.zip Payload -x "*.DS_Store"
           mv ./Locus.zip ./Locus.ipa
-          ls -la ../../../../../../..
+          ls -la ../../../../../..
       - name: Upload Locus.ipa
         uses: actions/upload-artifact@v4
         with:
