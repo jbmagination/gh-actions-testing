@@ -32,6 +32,7 @@ jobs:
           sudo xcodebuild -license accept && xcodebuild -downloadPlatform iOS
           cd locus && flutter config --no-analytics && flutter --disable-telemetry && flutter build ipa --no-codesign
       - name: Upload .xcarchive
+        uses: actions/upload-artifact@v4
         with:
           name: Runner.xcarchive
           path: $BASEDIR/locus/build/ios/archive/Runner.xcarchive
