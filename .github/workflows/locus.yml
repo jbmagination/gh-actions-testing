@@ -40,8 +40,8 @@ jobs:
           cd locus && cd build && cd ios && cd archive && cd Runner.xcarchive && cd Products
           mv ./Applications ./Payload
           zip -vr Locus.zip Payload -x "*.DS_Store"
-          mv ./Locus.zip ../../../../../../Locus.ipa
-          cd ../../../../../.. && echo $PWD
+          mv ./Locus.zip ../../../../../../../Locus.ipa
+          cd ../../../../../../.. && echo $PWD
       - name: Upload Locus.ipa
         uses: actions/upload-artifact@v4
         with:
