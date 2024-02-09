@@ -35,7 +35,7 @@ jobs:
       - name: Upload source code
         uses: actions/upload-artifact@v4
         with:
-          name: src
+          name: src.zip
           path: locus
       - name: Create .ipa
         env:
@@ -49,5 +49,5 @@ jobs:
       - name: Upload Locus.ipa
         uses: actions/upload-artifact@v4
         with:
-          name: Locus
+          name: Locus.ipa
           path: Locus.ipa
