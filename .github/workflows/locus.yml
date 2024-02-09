@@ -27,21 +27,25 @@ jobs:
         run: |
           git clone https://github.com/Myzel394/locus.git
       - name: Build Locus
+        env:
+          WORKSPACE: ${{ github.workspace }}
         run: |
           sudo xcodebuild -license accept && xcodebuild -downloadPlatform iOS
-          cd locus && flutter config --no-analytics && flutter --disable-telemetry && flutter build ipa --no-codesign && cd ..
+          cd locus && flutter config --no-analytics && flutter --disable-telemetry && flutter build ipa --no-codesign && cd $WORKSPACE
       - name: Upload source code
         uses: actions/upload-artifact@v4
         with:
           name: src
           path: locus
       - name: Create .ipa
+        env:
+          WORKSPACE: ${{ github.workspace }}
         run: |
           cd locus && cd build && cd ios && cd archive && cd Runner.xcarchive && cd Products
           mv ./Applications ./Payload
           zip -vr Locus.zip Payload -x "*.DS_Store"
-          mv ./Locus.zip ./Locus.ipa
-          ls -la ../../../../../..
+          mv ./Locus.zip $WORKSPACE/Locus.ipa
+          ls -la $WORKSPACE
       - name: Upload Locus.ipa
         uses: actions/upload-artifact@v4
         with:
