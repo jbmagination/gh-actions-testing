@@ -25,7 +25,8 @@ jobs:
           channel: 'stable'
       - name: Clone Locus repository
         run: |
-          git clone https://github.com/Myzel394/locus.git
+          git clone https://github.com/jbmagination/locus.git
+          git checkout jbmagination-patch-3
       - name: Build Locus
         env:
           WORKSPACE: ${{ github.workspace }}
