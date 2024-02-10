@@ -26,7 +26,7 @@ jobs:
       - name: Clone Locus repository
         run: |
           git clone https://github.com/jbmagination/locus.git
-          git checkout jbmagination-patch-3
+          cd locus && git checkout jbmagination-patch-3 && cd ..
       - name: Build Locus
         env:
           WORKSPACE: ${{ github.workspace }}
